@@ -2,11 +2,19 @@
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
+## macOS
+.DS_Store
+
 ## User settings
 xcuserdata/
 
 ## Obj-C/Swift specific
 *.hmap
+
+## Xcode build artifacts
+DerivedData/
+build/
+*.xcresult
 
 ## App packaging
 *.ipa
@@ -30,6 +38,10 @@ playground.xcworkspace
 # .swiftpm
 
 .build/
+.swiftpm/
+Packages/
+Package.pins
+Package.resolved
 
 # CocoaPods
 #
