@@ -1,6 +1,6 @@
 //
-//  MovieSearchAppApp.swift
-//  MovieSearchApp
+//  MovieSearchApp.swift
+//  MovieSearch
 //
 //  Created by JooYoung Kim on 1/16/26.
 //
@@ -8,10 +8,10 @@
 import SwiftUI
 
 @main
-struct MovieSearchAppApp: App {
+struct MovieSearchApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainTabView()
         }
     }
 }

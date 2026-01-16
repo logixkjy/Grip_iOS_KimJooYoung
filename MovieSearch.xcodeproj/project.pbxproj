@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		7CABC1F32F1A38DA003A5699 /* MovieSearchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieSearchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7CABC3512F1A3EC4003A5699 /* MovieSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		7CABC1F52F1A38DA003A5699 /* MovieSearchApp */ = {
+		7CABC3532F1A3EC4003A5699 /* MovieSearch */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = MovieSearchApp;
+			path = MovieSearch;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		7CABC1F02F1A38DA003A5699 /* Frameworks */ = {
+		7CABC34E2F1A3EC4003A5699 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -29,18 +29,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7CABC1EA2F1A38DA003A5699 = {
+		7CABC3482F1A3EC4003A5699 = {
 			isa = PBXGroup;
 			children = (
-				7CABC1F52F1A38DA003A5699 /* MovieSearchApp */,
-				7CABC1F42F1A38DA003A5699 /* Products */,
+				7CABC3532F1A3EC4003A5699 /* MovieSearch */,
+				7CABC3522F1A3EC4003A5699 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		7CABC1F42F1A38DA003A5699 /* Products */ = {
+		7CABC3522F1A3EC4003A5699 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7CABC1F32F1A38DA003A5699 /* MovieSearchApp.app */,
+				7CABC3512F1A3EC4003A5699 /* MovieSearch.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,64 +48,64 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7CABC1F22F1A38DA003A5699 /* MovieSearchApp */ = {
+		7CABC3502F1A3EC4003A5699 /* MovieSearch */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7CABC1FE2F1A38DC003A5699 /* Build configuration list for PBXNativeTarget "MovieSearchApp" */;
+			buildConfigurationList = 7CABC35C2F1A3EC7003A5699 /* Build configuration list for PBXNativeTarget "MovieSearch" */;
 			buildPhases = (
-				7CABC1EF2F1A38DA003A5699 /* Sources */,
-				7CABC1F02F1A38DA003A5699 /* Frameworks */,
-				7CABC1F12F1A38DA003A5699 /* Resources */,
+				7CABC34D2F1A3EC4003A5699 /* Sources */,
+				7CABC34E2F1A3EC4003A5699 /* Frameworks */,
+				7CABC34F2F1A3EC4003A5699 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				7CABC1F52F1A38DA003A5699 /* MovieSearchApp */,
+				7CABC3532F1A3EC4003A5699 /* MovieSearch */,
 			);
-			name = MovieSearchApp;
+			name = MovieSearch;
 			packageProductDependencies = (
 			);
-			productName = MovieSearchApp;
-			productReference = 7CABC1F32F1A38DA003A5699 /* MovieSearchApp.app */;
+			productName = MovieSearch;
+			productReference = 7CABC3512F1A3EC4003A5699 /* MovieSearch.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		7CABC1EB2F1A38DA003A5699 /* Project object */ = {
+		7CABC3492F1A3EC4003A5699 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2610;
 				LastUpgradeCheck = 2610;
 				TargetAttributes = {
-					7CABC1F22F1A38DA003A5699 = {
+					7CABC3502F1A3EC4003A5699 = {
 						CreatedOnToolsVersion = 26.1.1;
 					};
 				};
 			};
-			buildConfigurationList = 7CABC1EE2F1A38DA003A5699 /* Build configuration list for PBXProject "MovieSearchApp" */;
+			buildConfigurationList = 7CABC34C2F1A3EC4003A5699 /* Build configuration list for PBXProject "MovieSearch" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 7CABC1EA2F1A38DA003A5699;
+			mainGroup = 7CABC3482F1A3EC4003A5699;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 7CABC1F42F1A38DA003A5699 /* Products */;
+			productRefGroup = 7CABC3522F1A3EC4003A5699 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7CABC1F22F1A38DA003A5699 /* MovieSearchApp */,
+				7CABC3502F1A3EC4003A5699 /* MovieSearch */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		7CABC1F12F1A38DA003A5699 /* Resources */ = {
+		7CABC34F2F1A3EC4003A5699 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -115,7 +115,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		7CABC1EF2F1A38DA003A5699 /* Sources */ = {
+		7CABC34D2F1A3EC4003A5699 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -125,7 +125,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		7CABC1FC2F1A38DC003A5699 /* Debug */ = {
+		7CABC35A2F1A3EC7003A5699 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -189,7 +189,7 @@
 			};
 			name = Debug;
 		};
-		7CABC1FD2F1A38DC003A5699 /* Release */ = {
+		7CABC35B2F1A3EC7003A5699 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -246,7 +246,7 @@
 			};
 			name = Release;
 		};
-		7CABC1FF2F1A38DC003A5699 /* Debug */ = {
+		7CABC35D2F1A3EC7003A5699 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -266,7 +266,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.logixkjy.MovieSearchApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.logixkjy.MovieSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -278,7 +278,7 @@
 			};
 			name = Debug;
 		};
-		7CABC2002F1A38DC003A5699 /* Release */ = {
+		7CABC35E2F1A3EC7003A5699 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -298,7 +298,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.logixkjy.MovieSearchApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.logixkjy.MovieSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -313,25 +313,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7CABC1EE2F1A38DA003A5699 /* Build configuration list for PBXProject "MovieSearchApp" */ = {
+		7CABC34C2F1A3EC4003A5699 /* Build configuration list for PBXProject "MovieSearch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7CABC1FC2F1A38DC003A5699 /* Debug */,
-				7CABC1FD2F1A38DC003A5699 /* Release */,
+				7CABC35A2F1A3EC7003A5699 /* Debug */,
+				7CABC35B2F1A3EC7003A5699 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7CABC1FE2F1A38DC003A5699 /* Build configuration list for PBXNativeTarget "MovieSearchApp" */ = {
+		7CABC35C2F1A3EC7003A5699 /* Build configuration list for PBXNativeTarget "MovieSearch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7CABC1FF2F1A38DC003A5699 /* Debug */,
-				7CABC2002F1A38DC003A5699 /* Release */,
+				7CABC35D2F1A3EC7003A5699 /* Debug */,
+				7CABC35E2F1A3EC7003A5699 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 7CABC1EB2F1A38DA003A5699 /* Project object */;
+	rootObject = 7CABC3492F1A3EC4003A5699 /* Project object */;
 }
