@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct MainTabView: View {
+    @StateObject private var favoritesViewModel = FavoritesTabViewModel()
     
     var body: some View {
         TabView {
-            SearchTabView()
+            SearchTabView(favoritesViewModel: favoritesViewModel)
                 .tabItem {
                     Label("검색", systemImage: "magnifyingglass")
                 }
             
-            FavoritesTabView()
+            FavoritesTabView(viewModel: favoritesViewModel)
                 .tabItem {
                     Label("즐겨찾기", systemImage: "star.fill")
                 }

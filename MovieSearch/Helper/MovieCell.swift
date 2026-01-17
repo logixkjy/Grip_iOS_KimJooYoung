@@ -89,6 +89,7 @@ final class MovieCell: UICollectionViewCell {
             poster != "N/A",
             let url = URL(string: poster)
         else {
+            imageView.contentMode = .scaleAspectFit
             imageView.image = placeholder
             imageView.tintColor = .tertiaryLabel
             return
@@ -104,7 +105,7 @@ final class MovieCell: UICollectionViewCell {
         ) { [weak self] result in
             guard let self else { return }
             if case .failure = result {
-                self.imageView.contentMode = .scaleAspectFit
+                self.imageView.contentMode = .scaleAspectFit 
                 self.imageView.image = placeholder
                 self.imageView.tintColor = .tertiaryLabel
             } else {

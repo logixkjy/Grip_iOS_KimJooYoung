@@ -21,6 +21,8 @@ struct MovieCollectionView: UIViewRepresentable {
     
     var scrollToTopTrigger: Int
     
+    var favoritesVersion: Int
+    
     func makeUIView(context: Context) -> UICollectionView {
         let layout = Self.makeLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -41,6 +43,12 @@ struct MovieCollectionView: UIViewRepresentable {
         if context.coordinator.lastScrollToTopTrigger != scrollToTopTrigger {
             context.coordinator.lastScrollToTopTrigger = scrollToTopTrigger
             uiView.setContentOffset(.zero, animated: true)
+        }
+        
+        if context.coordinator.lastFavoritesVersion != favoritesVersion {
+            context.coordinator.lastFavoritesVersion = favoritesVersion
+            
+            context.coordinator.reloadAllVisibleItems()
         }
     }
     
@@ -78,6 +86,7 @@ struct MovieCollectionView: UIViewRepresentable {
         private var dataSource: UICollectionViewDiffableDataSource<Int, MovieItem>?
         private var currentItems: [MovieItem] = []
         var lastScrollToTopTrigger: Int = 0
+        var lastFavoritesVersion: Int = 0
         
         init(parent: MovieCollectionView) {
             self.parent = parent
@@ -126,6 +135,13 @@ struct MovieCollectionView: UIViewRepresentable {
             if indexPath.item >= max(0, currentItems.count - 4) {
                 onReachedBottom()
             }
+        }
+        
+        func reloadAllVisibleItems() {
+            guard let dataSource else { return }
+            var snapshot = dataSource.snapshot()
+            snapshot.reloadItems(snapshot.itemIdentifiers)
+            dataSource.apply(snapshot, animatingDifferences: false)
         }
     }
 }
