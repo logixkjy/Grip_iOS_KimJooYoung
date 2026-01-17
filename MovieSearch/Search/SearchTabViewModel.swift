@@ -37,7 +37,7 @@ final class SearchTabViewModel: ObservableObject {
             let res = try await MovieSearchAPI.searchMovie(query: q, page: nextPage)
             guard requestToken == token else { return }
 
-            items = res.items
+            items = dedupePreservingOrder(res.items)
             nextPage += 1
 
             let total = Int(res.total) ?? items.count
@@ -62,18 +62,37 @@ final class SearchTabViewModel: ObservableObject {
             let res = try await MovieSearchAPI.searchMovie(query: currentQuery, page: nextPage)
             guard requestToken == token else { return }
 
-            items.append(contentsOf: res.items)
+            let newItems = dedupePreservingOrder(res.items)
+            
+            let existing = Set(items.map(\.imdbID))
+            let filtered = newItems.filter { !existing.contains($0.imdbID) }
+            
+            items.append(contentsOf: filtered)
             nextPage += 1
 
             let total = Int(res.total) ?? items.count
             hasNextPage = total > items.count
         } catch {
-            // 네트워크 에러 시 hasNextPage를 false로 둘지/유지할지는 취향
+
         }
+    }
+    
+    private func dedupePreservingOrder(_ items: [MovieItem]) -> [MovieItem] {
+        var seen = Set<String>()
+        seen.reserveCapacity(items.count)
+        var result: [MovieItem] = []
+        result.reserveCapacity(items.count)
+        
+        for item in items {
+            if seen.insert(item.imdbID).inserted {
+                result.append(item)
+            }
+        }
+        return result
     }
 
     func resetSearch() {
-        requestToken = UUID() // 진행 중 요청 무효화
+        requestToken = UUID() 
         items.removeAll()
         currentQuery = ""
         nextPage = 1

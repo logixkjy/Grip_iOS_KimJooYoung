@@ -8,7 +8,7 @@
 import SwiftUI
 import UIKit
 
-struct MovieGridCollectionView: UIViewRepresentable {
+struct MovieCollectionView: UIViewRepresentable {
     typealias UIViewType = UICollectionView
     
     var items: [MovieItem]
@@ -18,6 +18,8 @@ struct MovieGridCollectionView: UIViewRepresentable {
     var onSelect: (MovieItem) -> Void
     
     var onReachedBottom: (() -> Void)?
+    
+    var scrollToTopTrigger: Int
     
     func makeUIView(context: Context) -> UICollectionView {
         let layout = Self.makeLayout()
@@ -35,6 +37,11 @@ struct MovieGridCollectionView: UIViewRepresentable {
     func updateUIView(_ uiView: UICollectionView, context: Context) {
         context.coordinator.parent = self
         context.coordinator.applySnapshot(items: items, animating: true)
+        
+        if context.coordinator.lastScrollToTopTrigger != scrollToTopTrigger {
+            context.coordinator.lastScrollToTopTrigger = scrollToTopTrigger
+            uiView.setContentOffset(.zero, animated: true)
+        }
     }
     
     func makeCoordinator() -> Coordinator {
@@ -67,11 +74,12 @@ struct MovieGridCollectionView: UIViewRepresentable {
     }
     
     final class Coordinator: NSObject, UICollectionViewDelegate {
-        var parent: MovieGridCollectionView
+        var parent: MovieCollectionView
         private var dataSource: UICollectionViewDiffableDataSource<Int, MovieItem>?
         private var currentItems: [MovieItem] = []
+        var lastScrollToTopTrigger: Int = 0
         
-        init(parent: MovieGridCollectionView) {
+        init(parent: MovieCollectionView) {
             self.parent = parent
         }
         

@@ -82,7 +82,8 @@ final class MovieCell: UICollectionViewCell {
         subtitleLabel.text = "\(item.year) • \(item.type)"
         favoriteBadge.isHidden = !isFavorite
         
-        let placeholder = UIImage(systemName: "film.crop.square")
+        let placeholder = UIImage(systemName: "photo.badge.exclamationmark")
+
         guard
             let poster = item.poster,
             poster != "N/A",
@@ -103,9 +104,11 @@ final class MovieCell: UICollectionViewCell {
         ) { [weak self] result in
             guard let self else { return }
             if case .failure = result {
+                self.imageView.contentMode = .scaleAspectFit
                 self.imageView.image = placeholder
                 self.imageView.tintColor = .tertiaryLabel
             } else {
+                self.imageView.contentMode = .scaleAspectFill
                 self.imageView.tintColor = nil
             }
         }

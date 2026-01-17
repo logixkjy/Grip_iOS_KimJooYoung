@@ -12,6 +12,11 @@ struct FavoritesTabView: View {
     var body: some View {
         NavigationStack {
             VStack {
+//                MovieCollectionView(
+//                    items: <#T##[MovieItem]#>,
+//                    isFavorite: <#T##(String) -> Bool#>,
+//                    onSelect: <#T##(MovieItem) -> Void#>
+//                )
                 ContentUnavailableView("즐겨찾기한 영화가 없습니다.", systemImage: "star")
             }
             .navigationTitle("내 즐겨찾기")
