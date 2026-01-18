@@ -5,7 +5,7 @@
 //  Created by JooYoung Kim on 1/16/26.
 //
 
-struct MovieItem: Hashable, Sendable {
+struct MovieItem: Hashable, Sendable, Codable {
     let title: String
     let year: String
     let imdbID: String

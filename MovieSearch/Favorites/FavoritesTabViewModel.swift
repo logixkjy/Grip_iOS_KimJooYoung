@@ -8,6 +8,10 @@
 import Foundation
 import Combine
 
+struct FavoritesContainer: Codable {
+    var favorites: [MovieItem]
+}
+
 @MainActor
 final class FavoritesTabViewModel: ObservableObject {
     @Published private(set) var favorites: [MovieItem] = []
@@ -36,5 +40,58 @@ final class FavoritesTabViewModel: ObservableObject {
         } else {
             add(item)
         }
+        save()
+    }
+    
+    func load() {
+        let url = fileURL()
+        
+        guard FileManager.default.fileExists(atPath: url.path) else {
+            favorites = []
+            favoritesIDs = []
+            return
+        }
+        
+        do {
+            let data = try Data(contentsOf: url)
+            let decode = try JSONDecoder().decode(FavoritesContainer.self, from: data)
+            
+            var seen = Set<String>()
+            var cleaned: [MovieItem] = []
+            for m in decode.favorites {
+                if seen.insert(m.imdbID).inserted {
+                    cleaned.append(m)
+                }
+            }
+            
+            favorites = cleaned
+            favoritesIDs = Set(cleaned.map(\.imdbID))
+            version &+= 1
+        } catch {
+            favorites = []
+            favoritesIDs = []
+        }
+    }
+    
+    func save() {
+        let url = fileURL()
+        
+        do {
+            let container = FavoritesContainer(favorites: favorites)
+            let data = try JSONEncoder().encode(container)
+            try data.write(to: url, options: [.atomic])
+        } catch {
+            print("error \(error.localizedDescription)")
+        }
+    }
+    
+    
+    
+    private func fileURL() -> URL {
+        let fm = FileManager.default
+        let base = fm.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+        try? fm.createDirectory(at: base, withIntermediateDirectories: true)
+
+        return base.appendingPathComponent("favorites.json")
     }
 }

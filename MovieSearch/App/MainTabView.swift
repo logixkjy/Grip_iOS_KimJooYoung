@@ -22,5 +22,8 @@ struct MainTabView: View {
                     Label("즐겨찾기", systemImage: "star.fill")
                 }
         }
+        .onAppear {
+            favoritesViewModel.load()
+        }
     }
 }
