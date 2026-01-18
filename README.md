@@ -79,7 +79,7 @@ UI 구현 방식
 	-	SwiftUI: 화면 구조, 검색창, 탭, 상태 관리
 	-	UIKit: 카드형 2열 그리드 성능 및 제어를 위해 UICollectionView 사용
 
-UIViewRepresentable로 SwiftUI에 컬렉션뷰를 래핑하여 사용합니다.
+	UIViewRepresentable로 SwiftUI에 컬렉션뷰를 래핑하여 사용합니다.
 
 2) Diffable Data Source
 
