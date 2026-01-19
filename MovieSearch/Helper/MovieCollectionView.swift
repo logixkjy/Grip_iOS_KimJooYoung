@@ -23,6 +23,9 @@ struct MovieCollectionView: UIViewRepresentable {
     
     var favoritesVersion: Int
     
+    var isReorderEnable: Bool = false
+    var onMove:((Int, Int) -> Void)? = nil
+    
     func makeUIView(context: Context) -> UICollectionView {
         let layout = Self.makeLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -33,6 +36,14 @@ struct MovieCollectionView: UIViewRepresentable {
         
         context.coordinator.configureDataSource(collectionView: cv)
         
+        let longPress = UILongPressGestureRecognizer(
+            target: context.coordinator,
+            action: #selector(Coordinator.handleLongPress(_:))
+        )
+        cv.addGestureRecognizer(longPress)
+        cv.dragInteractionEnabled = isReorderEnable
+        cv.dragDelegate = context.coordinator
+        cv.dropDelegate = context.coordinator
         return cv
     }
     
@@ -81,7 +92,7 @@ struct MovieCollectionView: UIViewRepresentable {
         return UICollectionViewCompositionalLayout(section: section)
     }
     
-    final class Coordinator: NSObject, UICollectionViewDelegate {
+    final class Coordinator: NSObject, UICollectionViewDelegate, UICollectionViewDragDelegate, UICollectionViewDropDelegate {
         var parent: MovieCollectionView
         private var dataSource: UICollectionViewDiffableDataSource<Int, MovieItem>?
         private var currentItems: [MovieItem] = []
@@ -142,6 +153,57 @@ struct MovieCollectionView: UIViewRepresentable {
             var snapshot = dataSource.snapshot()
             snapshot.reloadItems(snapshot.itemIdentifiers)
             dataSource.apply(snapshot, animatingDifferences: false)
+        }
+        
+        @objc func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
+            guard parent.isReorderEnable else { return }
+            guard let cv = gesture.view as? UICollectionView else { return }
+            
+            let location = gesture.location(in: cv)
+            
+            switch gesture.state {
+            case .began:
+                guard let indexPath = cv.indexPathForItem(at: location) else { return }
+                cv.beginInteractiveMovementForItem(at: indexPath)
+                
+            case .changed:
+                cv.updateInteractiveMovementTargetPosition(location)
+                
+            case .ended:
+                cv.endInteractiveMovement()
+                
+            default:
+                cv.cancelInteractiveMovement()
+            }
+        }
+        
+        func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: any UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+            guard parent.isReorderEnable else { return [] }
+            let item = currentItems[indexPath.item]
+            let provider = NSItemProvider(object: item.imdbID as NSString)
+            let dragItem = UIDragItem(itemProvider: provider)
+            dragItem.localObject = item.imdbID
+            return [dragItem]
+        }
+        
+        func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: any UICollectionViewDropCoordinator) {
+            guard parent.isReorderEnable else { return }
+            guard coordinator.proposal.operation == .move else { return }
+            
+            guard let item = coordinator.items.first, let sourceIndexPath = item.sourceIndexPath else { return }
+            
+            let destinationIndexPath = coordinator.destinationIndexPath ?? IndexPath(item: max(0, currentItems.count - 1), section: 0)
+            
+            collectionView.performBatchUpdates({
+                parent.onMove?(sourceIndexPath.item, destinationIndexPath.item)
+            }, completion: nil)
+        }
+        
+        func collectionView(_ collectionView: UICollectionView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
+            guard parent.isReorderEnable else {
+                return UICollectionViewDropProposal(operation: .forbidden)
+            }
+            return UICollectionViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
         }
     }
 }

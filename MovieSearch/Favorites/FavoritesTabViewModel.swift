@@ -43,6 +43,18 @@ final class FavoritesTabViewModel: ObservableObject {
         save()
     }
     
+    func move(_ from: Int, _ to: Int) {
+        guard from != to else { return }
+        guard favorites.indices.contains(from), favorites.indices.contains(to) else { return }
+        
+        let item = favorites.remove(at: from)
+        let safeTo = min(max(to, 0), favorites.count)
+        favorites.insert(item, at: safeTo)
+        
+        version &+= 1
+        save()
+    }
+    
     func load() {
         let url = fileURL()
         
@@ -84,8 +96,6 @@ final class FavoritesTabViewModel: ObservableObject {
             print("error \(error.localizedDescription)")
         }
     }
-    
-    
     
     private func fileURL() -> URL {
         let fm = FileManager.default

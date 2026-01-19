@@ -30,8 +30,10 @@ struct FavoritesTabView: View {
                             self.showAlert = true
                         },
                         scrollToTopTrigger: scrollToTopTrigger,
-                        favoritesVersion: viewModel.version
-                    )
+                        favoritesVersion: viewModel.version,
+                        isReorderEnable: true) { from, to in
+                            viewModel.move(from, to)
+                        }
                 }
             }
             .navigationTitle("내 즐겨찾기")
