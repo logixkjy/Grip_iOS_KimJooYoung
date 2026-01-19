@@ -82,8 +82,7 @@ UI 구현 방식
 
 2) Diffable Data Source
 - 	컬렉션뷰는 UICollectionViewDiffableDataSource를 사용합니다.
-	- Diffable identifier는 MovieItem 전체가 아닌 imdbID(String) 를 사용하여
-		- API 응답에 중복 영화가 섞이는 경우에도 크래시가 발생하지 않도록 처리했습니다.
+	- Diffable identifier는 MovieItem 전체가 아닌 imdbID(String) 를 사용하여 API 응답에 중복 영화가 섞이는 경우에도 크래시가 발생하지 않도록 처리했습니다.
 - 	즐겨찾기 상태(★ 배지)는 favorites 변경 시 snapshot reload 방식으로 즉시 갱신합니다.
 
 ⸻
